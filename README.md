@@ -12,7 +12,12 @@ A sample application to show how to use Google Fit REST api.
 
 ## Usage
 
+Install node dependencies:
+
+    $ npm install
+
 Create a config file '.gFitCredentials' to store local / production Google API Credentials
+
      {
        "dev": {
          "clientCode": "your-client-code-here",
@@ -25,3 +30,15 @@ Create a config file '.gFitCredentials' to store local / production Google API C
          "apiKey": "your-api-key-here"
        }
      }
+
+Create index.html file for local credentials. Please configure the credentials in your Google Developer Console
+
+     $ grunt concat:dev
+
+To use prod credentials, type:
+
+     $ grunt concat:prod
+
+To start a local development server, type:
+
+      $ grunt serve
