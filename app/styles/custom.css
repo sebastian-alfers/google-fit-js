@@ -1,0 +1,31 @@
+#login p{
+  text-align: center;
+}
+
+#login .content{
+  display: none;
+}
+
+#alpha {
+  height: 40px;
+  width: 200px;
+  background-color: red;
+}
+
+#alpha-container {
+  border: 5px solid green;
+}
+
+#result {
+  font-size: 30px;
+  color: red
+}
+
+.reset {
+  background-color: white
+
+}
+
+a {
+  cursor: pointer !important
+}

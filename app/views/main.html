@@ -1,0 +1,116 @@
+<div class="jumbotron" ng-controller="MainCtrl">
+  <div id="deviceNotRegistered">
+    <h2>Device not registered</h2>
+    <p class="lead">
+        Your device is "{{ getBrowser() }}" is not listed as a "DataSource" in GoogleFit.
+    </p>
+    <p><a class="btn btn-lg btn-success" ng-click="addDevice()" id="add-device">Add Now</span></a></p>
+    <p class="load-add-device" style="display: none"><img src="/images/spiffygif_106x106.gif"/></p>
+  </div>
+
+  <div id="deviceRegistered">
+    <h2>Your deivce "{{getBrowser()}}" is registered</h2>
+
+      <div id="sessions" ng-controller="SessionsCtrl">
+        <p id="startSessionBtn"><a class="btn btn-lg btn-success" ng-click="startSession()">Start Session</a></p>
+        <div id="stopSessionBtn" style="display: none">
+          <a class="btn btn-lg btn-success" ng-click="stopSession()">Stop Session</a>
+          <div id="addDataPoints">
+
+            <div id="alpha"></div>
+
+            <div id="curr"></div>
+
+            <div id="min"></div>
+            <div id="max"></div>
+
+            <div id="result"></div>
+
+            <p id="addDataPoint">
+              <!--<a class="btn btn-xs btn-default" ng-click="addDataPoint()">add data point</span></a>-->
+                GoogleFit Data Points:
+                <div ng-repeat="point in dataPoints">
+                  {{ point.created.fromNow() }}
+                <div>
+            </p>
+          </div>
+        </div>
+      </div>
+  </div>
+  <br /><br />
+  <hr />
+  <p id="listSessionsBtn"><a class="btn btn-xs btn-default" ng-click="listSessions()">List Sessions</span></a></p>
+    <p class="load-sessions" style="display: none"><img src="/images/spiffygif_106x106.gif" class="loading"/></p>
+  <ul class="session-container">
+    <li ng-repeat="session in sessionList">
+      <a ng-click="showSessionDetails(session)" data-toggle="modal" data-target="#session-detail">Session started {{ session.startTimeMoment.fromNow() }}, took {{ session.duration.get("minutes") }} minutes, {{ session.duration.get("seconds") }} seconds</a> -
+      <a ng-click="removeSession(session)">remove</a>
+    </li>
+  </ul>
+
+<!-- Modal -->
+<div class="modal fade" id="session-detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Session details</h4>
+      </div>
+      <p><img src="/images/spiffygif_106x106.gif" class="loading"/></p>
+      <div class="modal-body" style="text-align: left">
+        <p class="session-details-content" style="display:none">
+          Started:
+          <ul>
+            <li>{{ sessionStarted.format('MMMM Do YYYY, h:mm:ss a') }}</li>
+            <li>{{ sessionStarted.fromNow() }}</li>
+          </ul>
+          Stopped:
+          <ul>
+            <li>{{ sessionStopped.format('MMMM Do YYYY, h:mm:ss a') }}</li>
+            <li>{{ sessionStopped.fromNow() }}</li>
+          </ul>
+          <hr />
+          Data Points:
+          <ul>
+            <li ng-repeat="point in sessionDataPoints">
+              <ul>
+                <li>
+                Data Type: {{ point.dataTypeName }}
+                </li>
+                <li>
+                Value: {{ point.value[0].intVal }}
+                </li>
+                <li>
+                Created: {{ point.startTimeMoment.fromNow() }}
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+<!--
+<div class="row marketing">
+  <h4>HTML5 Boilerplate</h4>
+  <p>
+    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
+  </p>
+
+  <h4>Angular</h4>
+  <p>
+    AngularJS is a toolset for building the framework most suited to your application development.
+  </p>
+
+  <h4>Karma</h4>
+  <p>Spectacular Test Runner for JavaScript.</p>
+</div>
+-->
