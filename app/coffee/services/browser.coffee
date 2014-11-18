@@ -6,6 +6,10 @@ angular.module('Browser',[])
 angular.module('Browser')
   .factory 'BrowserInfo', ($q, $rootScope, $document) ->
     {
+      ###
+         taken from: http://stackoverflow.com/questions/5916900/detect-version-of-browser
+         modiefied by me
+      ###
       getInfo: ()->
         # return navigator.userAgent.split("/").join("-")
         ua = navigator.userAgent
